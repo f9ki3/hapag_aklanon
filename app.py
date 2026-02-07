@@ -28,9 +28,9 @@ FIREBASE_URL = os.environ.get(
 
 # Cloudinary Configuration
 cloudinary.config(
-    cloud_name='dem5tr3uq',
-    api_key='767752514795151',
-    api_secret='fmgjyMAnXddYfUtN6GMki4BOAyc',
+    cloud_name=os.environ.get('CLOUDINARY_CLOUD_NAME', ''),
+    api_key=os.environ.get('CLOUDINARY_API_KEY', ''),
+    api_secret=os.environ.get('CLOUDINARY_API_SECRET', ''),
     secure=True
 )
 
