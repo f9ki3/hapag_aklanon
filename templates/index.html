@@ -1,0 +1,1819 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hapag-Aklanon Recipe Manager</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --primary-color: #10b981;
+        --primary-hover: #059669;
+        --bg-body: #f8fafc;
+        --surface: #ffffff;
+        --text-main: #1e293b;
+        --text-muted: #64748b;
+        --border-color: #e2e8f0;
+        --shadow-sm:
+          0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+        --shadow-md:
+          0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        --radius-lg: 16px;
+        --radius-md: 8px;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--bg-body);
+        color: var(--text-main);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 32px auto;
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .card {
+        border: none;
+        border-radius: var(--radius-lg);
+        background: var(--surface);
+        box-shadow: var(--shadow-sm);
+        overflow: hidden;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        font-weight: 600;
+        color: var(--text-main);
+        letter-spacing: -0.025em;
+      }
+      .text-muted {
+        color: var(--text-muted) !important;
+      }
+
+      .table {
+        margin-bottom: 0;
+      }
+      .table thead th {
+        background-color: #f1f5f9;
+        color: var(--text-muted);
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.05em;
+        border: none;
+        padding: 16px;
+        white-space: nowrap;
+      }
+      .table tbody td {
+        padding: 16px;
+        border-bottom: 1px solid var(--border-color);
+        color: var(--text-main);
+        vertical-align: middle;
+      }
+      .table-img {
+        width: 48px;
+        height: 48px;
+        object-fit: cover;
+        border-radius: 8px;
+        background-color: #e2e8f0;
+      }
+
+      .btn {
+        font-weight: 500;
+        border-radius: 8px;
+        padding: 8px 16px;
+        transition: all 0.2s ease;
+      }
+      .btn-primary-theme {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+      }
+      .btn-primary-theme:hover {
+        background-color: var(--primary-hover);
+        color: white;
+        transform: translateY(-1px);
+      }
+      .btn-light {
+        background: white;
+        border: 1px solid var(--border-color);
+        color: var(--text-main);
+      }
+      .btn-light:hover {
+        background: #f8fafc;
+        border-color: #cbd5e1;
+      }
+
+      .btn-action {
+        width: 32px;
+        height: 32px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        border: none;
+        background: transparent;
+        color: var(--text-muted);
+        transition: all 0.2s;
+      }
+      .btn-action:hover {
+        background: #f1f5f9;
+        color: var(--text-main);
+      }
+      .btn-action.btn-delete:hover {
+        background: #fee2e2;
+        color: #ef4444;
+      }
+
+      .offcanvas {
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        border-left: none;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.05);
+        width: min(520px, 100vw);
+      }
+      .offcanvas-header {
+        padding: 24px;
+      }
+      .offcanvas-body {
+        padding: 24px;
+      }
+      .offcanvas-title {
+        font-weight: 700;
+        color: var(--text-main);
+      }
+
+      .form-label {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--text-main);
+        margin-bottom: 6px;
+      }
+      .form-control,
+      .form-select {
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        padding: 10px 12px;
+        font-size: 0.95rem;
+        color: var(--text-main);
+        background-color: #fff;
+        transition:
+          border-color 0.15s ease-in-out,
+          box-shadow 0.15s ease-in-out;
+      }
+      .form-control:focus,
+      .form-select:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+      }
+      .required::after {
+        content: " *";
+        color: #ef4444;
+        margin-left: 2px;
+      }
+
+      .item-list-container {
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        background: #f8fafc;
+        max-height: 250px;
+        overflow-y: auto;
+        padding: 8px;
+        margin-top: 10px;
+      }
+      .added-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        background: white;
+        padding: 10px 14px;
+        border-radius: 6px;
+        margin-bottom: 6px;
+        border: 1px solid transparent;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+        transition: all 0.2s;
+      }
+      .added-item:hover {
+        border-color: var(--border-color);
+        box-shadow: var(--shadow-sm);
+      }
+      .added-item span {
+        font-size: 0.9rem;
+        color: var(--text-main);
+      }
+
+      .input-group-modern {
+        display: flex;
+        gap: 8px;
+      }
+      .input-group-modern .form-control {
+        border-radius: 8px !important;
+      }
+      .btn-add-mini {
+        border-radius: 8px !important;
+        background: #ecfdf5;
+        color: var(--primary-color);
+        border: 1px solid #d1fae5;
+        padding: 0 16px;
+        min-width: 44px;
+      }
+      .btn-add-mini:hover {
+        background: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+      }
+
+      .alert {
+        border: none;
+        border-radius: 10px;
+        font-size: 0.9rem;
+      }
+
+      .view-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 12px;
+        margin-bottom: 24px;
+      }
+      .detail-badge {
+        display: inline-block;
+        padding: 4px 12px;
+        background: #f1f5f9;
+        color: var(--text-muted);
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        margin-right: 8px;
+      }
+      .step-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        background: #ecfdf5;
+        color: var(--primary-color);
+        font-weight: 600;
+        font-size: 0.75rem;
+        border-radius: 50%;
+        margin-right: 10px;
+        flex: 0 0 auto;
+      }
+      .view-list-item {
+        padding: 8px 0;
+        border-bottom: 1px dashed var(--border-color);
+        color: var(--text-main);
+        font-size: 0.95rem;
+      }
+      .view-list-item:last-child {
+        border-bottom: none;
+      }
+
+      .btn[disabled] {
+        opacity: 0.8;
+        transform: none !important;
+        cursor: not-allowed;
+      }
+      .btn-spinner {
+        width: 1rem;
+        height: 1rem;
+        border-width: 0.15em;
+      }
+
+      /* Toolbar */
+      .toolbar {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+      }
+
+      .toolbar .search-group {
+        flex: 1 1 420px;
+        min-width: 240px;
+      }
+
+      .toolbar .input-group-text,
+      .toolbar .form-control,
+      .toolbar .btn,
+      .toolbar .form-select {
+        height: 38px;
+      }
+
+      .toolbar .search-group .form-control {
+        border-left: 0;
+      }
+
+      .toolbar .clear-btn {
+        min-width: 44px;
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+      .toolbar .page-size {
+        flex: 0 0 auto;
+        width: 160px;
+        min-width: 140px;
+      }
+
+      .toolbar .actions {
+        display: flex;
+        gap: 10px;
+        flex: 0 0 auto;
+        align-items: center;
+      }
+
+      /* Pagination bar */
+      .pagination-wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 16px;
+        border-top: 1px solid var(--border-color);
+        background: #fff;
+        flex-wrap: wrap;
+      }
+      .pager-info {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          margin: 20px auto;
+        }
+        .toolbar .search-group {
+          flex: 1 1 100%;
+          min-width: 0;
+        }
+        .toolbar .page-size {
+          flex: 1 1 200px;
+          width: auto;
+        }
+        .toolbar .actions {
+          margin-left: auto;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .toolbar {
+          gap: 8px;
+        }
+        .toolbar .page-size {
+          flex: 1 1 100%;
+        }
+        .toolbar .actions {
+          flex: 1 1 100%;
+          justify-content: flex-end;
+        }
+        .toolbar .btn-sm .btn-text {
+          display: none;
+        }
+        .toolbar .btn-sm {
+          width: 38px;
+          padding: 0;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .toolbar .btn-sm i {
+          margin: 0 !important;
+        }
+
+        #alertContainer {
+          left: 0 !important;
+          right: 0 !important;
+          bottom: 0 !important;
+          width: 100%;
+          padding: 10px !important;
+        }
+        #alertContainer .alert {
+          margin: 0 8px 8px 8px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div
+        class="d-flex mb-3 justify-content-between align-items-start flex-wrap gap-2"
+      >
+        <div>
+          <h3 class="mb-1" style="font-weight: 700">Recipe Manager</h3>
+          <p class="text-muted small mb-0">Curated Hapag-Aklanon Dishes</p>
+        </div>
+      </div>
+
+      <!-- TOOLBAR -->
+      <div class="toolbar">
+        <div class="input-group input-group-sm search-group">
+          <span class="input-group-text bg-white border">
+            <i class="bi bi-search"></i>
+          </span>
+          <input
+            id="searchInput"
+            type="search"
+            class="form-control"
+            placeholder="Search dish, location, category..."
+            autocomplete="off"
+          />
+          <button
+            class="btn btn-light clear-btn"
+            id="btnClearSearch"
+            type="button"
+            title="Clear"
+          >
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <select
+          id="pageSize"
+          style="font-size: 12px"
+          class="form-select form-select-sm page-size"
+          title="Rows per page"
+        >
+          <option value="10" selected>10 / page</option>
+          <option value="20">20 / page</option>
+          <option value="50">50 / page</option>
+          <option value="100">100 / page</option>
+        </select>
+
+        <div class="actions">
+          <button
+            class="btn btn-light btn-sm"
+            id="btnRefresh"
+            onclick="loadRecipes()"
+          >
+            <i class="bi bi-arrow-clockwise me-1"></i>
+            <span class="btn-text">Refresh</span>
+          </button>
+
+          <button
+            class="btn btn-primary-theme btn-sm"
+            onclick="openAddOffcanvas()"
+          >
+            <i class="bi bi-plus-lg me-1"></i>
+            <span class="btn-text">New Recipe</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="ps-4" style="width: 60px">#</th>
+                <th style="width: 80px">Image</th>
+                <th>Dish Name</th>
+                <th>Location</th>
+                <th>Category</th>
+                <th class="text-end pe-4" style="width: 200px">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="recipesTableBody">
+              <tr>
+                <td colspan="6" class="text-center py-5">
+                  <div class="spinner-border text-success" role="status"></div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="pagination-wrap">
+          <div class="pager-info" id="pagerInfo">—</div>
+          <nav aria-label="Recipe pagination">
+            <ul class="pagination pagination-sm mb-0" id="pager"></ul>
+          </nav>
+        </div>
+      </div>
+
+      <div
+        id="alertContainer"
+        class="mt-3 position-fixed bottom-0 end-0 p-3"
+        style="z-index: 1050"
+      ></div>
+    </div>
+
+    <!-- ADD -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="addOffcanvas">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title">Add Recipe</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+        ></button>
+      </div>
+      <div class="offcanvas-body">
+        <form id="recipeForm">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="location" class="form-label required">Location</label>
+              <select
+                style="font-size: 12px"
+                class="form-select"
+                id="location"
+                required
+              >
+                <option value="">Select Municipality</option>
+                <option value="ALTAVAS">Altavas</option>
+                <option value="BALETE">Balete</option>
+                <option value="BANGA">Banga</option>
+                <option value="BATAN">Batan</option>
+                <option value="BURUANGA">Buruanga</option>
+                <option value="IBAJAY">Ibajay</option>
+                <option value="KALIBO">Kalibo</option>
+                <option value="LEZO">Lezo</option>
+                <option value="LIBACAO">Libacao</option>
+                <option value="MADALAG">Madalag</option>
+                <option value="MAKATO">Makato</option>
+                <option value="MALAY">Malay</option>
+                <option value="MALINAO">Malinao</option>
+                <option value="NABAS">Nabas</option>
+                <option value="NEW WASHINGTON">New Washington</option>
+                <option value="NUMANCIA">Numancia</option>
+                <option value="TANGALAN">Tangalan</option>
+              </select>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="dish_name" class="form-label required"
+                >Dish Name</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="dish_name"
+                placeholder="e.g. Binakol"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="description" class="form-label required"
+              >Description</label
+            >
+            <textarea
+              class="form-control"
+              id="description"
+              rows="3"
+              placeholder="Brief story about the dish..."
+              required
+            ></textarea>
+          </div>
+
+          <!-- CATEGORY DROPDOWN (ADD) -->
+          <div class="mb-3">
+            <label for="category" class="form-label required">Category</label>
+            <select class="form-select" id="category" required></select>
+            <div class="form-text">If not sure, choose <b>Others</b>.</div>
+          </div>
+
+          <!-- IMAGE UPLOAD ONLY (ADD) -->
+          <div class="mb-4">
+            <label class="form-label required">Upload Image</label>
+            <div class="p-3 bg-light rounded-3 border border-light">
+              <input
+                type="file"
+                class="form-control"
+                id="image_file"
+                accept="image/*"
+                required
+              />
+              <div class="form-text">Max 4MB. JPG/PNG/WebP recommended.</div>
+
+              <div
+                id="imagePreviewContainer"
+                class="mt-2"
+                style="display: none"
+              >
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                  <img
+                    id="imagePreview"
+                    src=""
+                    alt="Preview"
+                    class="rounded"
+                    style="width: 60px; height: 60px; object-fit: cover"
+                  />
+                  <button
+                    type="button"
+                    class="btn btn-sm text-danger"
+                    onclick="clearImage()"
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label required">Ingredients</label>
+            <div class="input-group-modern">
+              <input
+                type="text"
+                id="add_ing_input"
+                class="form-control"
+                placeholder="Type ingredient..."
+              />
+              <button type="button" class="btn btn-add-mini" id="btn_add_ing">
+                <i class="bi bi-plus-lg"></i>
+              </button>
+            </div>
+            <div id="add_ing_list" class="item-list-container">
+              <div class="text-muted text-center py-4 small" id="add_ing_empty">
+                No ingredients added yet.
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label required">Procedure</label>
+            <div class="input-group-modern">
+              <input
+                type="text"
+                id="add_proc_input"
+                class="form-control"
+                placeholder="Type step description..."
+              />
+              <button type="button" class="btn btn-add-mini" id="btn_add_proc">
+                <i class="bi bi-plus-lg"></i>
+              </button>
+            </div>
+            <div id="add_proc_list" class="item-list-container">
+              <div
+                class="text-muted text-center py-4 small"
+                id="add_proc_empty"
+              >
+                No steps added yet.
+              </div>
+            </div>
+          </div>
+
+          <div class="d-grid mt-5">
+            <button
+              type="submit"
+              class="btn btn-primary-theme btn-lg"
+              id="btnSaveRecipe"
+            >
+              Save Recipe
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- EDIT -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="editOffcanvas">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title">Edit Recipe</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+        ></button>
+      </div>
+      <div class="offcanvas-body">
+        <form id="editRecipeForm">
+          <input type="hidden" id="edit_recipe_id" />
+          <input type="hidden" id="edit_existing_image_url" />
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="edit_location" class="form-label required"
+                >Location</label
+              >
+              <select class="form-select" id="edit_location" required>
+                <option value="">Select Municipality</option>
+                <option value="ALTAVAS">Altavas</option>
+                <option value="BALETE">Balete</option>
+                <option value="BANGA">Banga</option>
+                <option value="BATAN">Batan</option>
+                <option value="BURUANGA">Buruanga</option>
+                <option value="IBAJAY">Ibajay</option>
+                <option value="KALIBO">Kalibo</option>
+                <option value="LEZO">Lezo</option>
+                <option value="LIBACAO">Libacao</option>
+                <option value="MADALAG">Madalag</option>
+                <option value="MAKATO">Makato</option>
+                <option value="MALAY">Malay</option>
+                <option value="MALINAO">Malinao</option>
+                <option value="NABAS">Nabas</option>
+                <option value="NEW WASHINGTON">New Washington</option>
+                <option value="NUMANCIA">Numancia</option>
+                <option value="TANGALAN">Tangalan</option>
+              </select>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="edit_dish_name" class="form-label required"
+                >Dish Name</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="edit_dish_name"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="edit_description" class="form-label required"
+              >Description</label
+            >
+            <textarea
+              class="form-control"
+              id="edit_description"
+              rows="3"
+              required
+            ></textarea>
+          </div>
+
+          <!-- CATEGORY DROPDOWN (EDIT) -->
+          <div class="mb-3">
+            <label for="edit_category" class="form-label required"
+              >Category</label
+            >
+            <select class="form-select" id="edit_category" required></select>
+            <div class="form-text">If not sure, choose <b>Others</b>.</div>
+          </div>
+
+          <!-- IMAGE UPLOAD ONLY (EDIT) -->
+          <div class="mb-4">
+            <label class="form-label">Replace Image</label>
+            <div class="p-3 bg-light rounded-3 border border-light">
+              <input
+                type="file"
+                class="form-control"
+                id="edit_image_file"
+                accept="image/*"
+              />
+              <div class="form-text">
+                Optional. Select a file to replace the current image (max 4MB).
+              </div>
+
+              <div
+                id="editImagePreviewContainer"
+                class="mt-2"
+                style="display: none"
+              >
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                  <img
+                    id="editImagePreview"
+                    src=""
+                    alt="Preview"
+                    class="rounded"
+                    style="width: 60px; height: 60px; object-fit: cover"
+                  />
+                  <button
+                    type="button"
+                    class="btn btn-sm text-danger"
+                    onclick="clearEditImage()"
+                  >
+                    Remove selection
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label required">Ingredients</label>
+            <div class="input-group-modern">
+              <input
+                type="text"
+                id="edit_ing_input"
+                class="form-control"
+                placeholder="Type ingredient..."
+              />
+              <button type="button" class="btn btn-add-mini" id="btn_edit_ing">
+                <i class="bi bi-plus-lg"></i>
+              </button>
+            </div>
+            <div id="edit_ing_list" class="item-list-container"></div>
+            <div
+              class="text-muted text-center py-4 small"
+              id="edit_ing_empty"
+              style="display: none"
+            >
+              No ingredients added yet.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label required">Procedure</label>
+            <div class="input-group-modern">
+              <input
+                type="text"
+                id="edit_proc_input"
+                class="form-control"
+                placeholder="Type step description..."
+              />
+              <button type="button" class="btn btn-add-mini" id="btn_edit_proc">
+                <i class="bi bi-plus-lg"></i>
+              </button>
+            </div>
+            <div id="edit_proc_list" class="item-list-container"></div>
+            <div
+              class="text-muted text-center py-4 small"
+              id="edit_proc_empty"
+              style="display: none"
+            >
+              No steps
+            </div>
+          </div>
+
+          <div class="d-grid mt-5">
+            <button
+              type="submit"
+              class="btn btn-primary-theme btn-lg"
+              id="btnUpdateRecipe"
+            >
+              Update Recipe
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- VIEW -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="viewOffcanvas">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title">Recipe Details</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+        ></button>
+      </div>
+      <div class="offcanvas-body" id="viewOffcanvasBody"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // ============================================================
+      // CATEGORY OPTIONS (Dropdown)
+      // ============================================================
+      const CATEGORY_OPTIONS = [
+        "Appetizer",
+        "Breakfast",
+        "Brunch",
+        "Soup",
+        "Stew",
+        "Main Course",
+        "Side Dish",
+        "Snack",
+        "Salad",
+        "Vegetable Dish",
+        "Seafood",
+        "Pork",
+        "Chicken",
+        "Beef",
+        "Noodles / Pasta",
+        "Rice Dish",
+        "Grilled",
+        "Fried",
+        "Baked",
+        "Boiled / Poached",
+        "Dessert",
+        "Bread / Pastry",
+        "Drink / Beverage",
+        "Sauce / Dip",
+        "Condiment",
+        "Others",
+      ];
+
+      function populateCategorySelect(
+        selectId,
+        { includePlaceholder = true } = {},
+      ) {
+        const el = document.getElementById(selectId);
+        if (!el) return;
+
+        el.innerHTML = "";
+
+        if (includePlaceholder) {
+          const opt = document.createElement("option");
+          opt.value = "";
+          opt.textContent = "Select Category";
+          el.appendChild(opt);
+        }
+
+        CATEGORY_OPTIONS.forEach((c) => {
+          const opt = document.createElement("option");
+          opt.value = c;
+          opt.textContent = c;
+          el.appendChild(opt);
+        });
+      }
+
+      function ensureCategoryInSelect(selectId, categoryValue) {
+        const el = document.getElementById(selectId);
+        if (!el) return;
+
+        const val = String(categoryValue ?? "").trim();
+        if (!val) {
+          el.value = "Others";
+          return;
+        }
+
+        const exists = Array.from(el.options).some((o) => o.value === val);
+        el.value = exists ? val : "Others";
+      }
+
+      // ============================================================
+      // Search + Pagination + Sort by Latest (client-side)
+      // ============================================================
+      const state = { all: [], filtered: [], page: 1, pageSize: 20, query: "" };
+
+      function parseDateToMs(val) {
+        if (!val) return 0;
+        const d = new Date(val);
+        const ms = d.getTime();
+        return Number.isFinite(ms) ? ms : 0;
+      }
+
+      function latestMs(recipe) {
+        return Math.max(
+          parseDateToMs(recipe.updated_at),
+          parseDateToMs(recipe.created_at),
+        );
+      }
+
+      function normalize(s) {
+        return String(s ?? "")
+          .toLowerCase()
+          .trim();
+      }
+
+      function applySearchAndSort() {
+        const q = normalize(state.query);
+        let arr = Array.isArray(state.all) ? [...state.all] : [];
+
+        // newest first
+        arr.sort((a, b) => latestMs(b) - latestMs(a));
+
+        if (q) {
+          arr = arr.filter((r) => {
+            const hay = [
+              r.dish_name,
+              r.location,
+              r.category,
+              r.description,
+              ...(Array.isArray(r.ingredients) ? r.ingredients : []),
+              ...(Array.isArray(r.procedure) ? r.procedure : []),
+            ]
+              .map(normalize)
+              .join(" | ");
+            return hay.includes(q);
+          });
+        }
+
+        state.filtered = arr;
+
+        const totalPages = Math.max(
+          1,
+          Math.ceil(state.filtered.length / state.pageSize),
+        );
+        if (state.page > totalPages) state.page = totalPages;
+        if (state.page < 1) state.page = 1;
+
+        renderTable();
+        renderPager();
+      }
+
+      function setSearchQuery(q) {
+        state.query = q;
+        state.page = 1;
+        applySearchAndSort();
+      }
+
+      function setPageSize(n) {
+        state.pageSize = n;
+        state.page = 1;
+        applySearchAndSort();
+      }
+
+      function goToPage(p) {
+        state.page = p;
+        applySearchAndSort();
+      }
+
+      function slicePage(items) {
+        const start = (state.page - 1) * state.pageSize;
+        return items.slice(start, start + state.pageSize);
+      }
+
+      // ============================================================
+      // Helpers: alerts + loading
+      // ============================================================
+      function showAlert(msg, type = "info", opts = {}) {
+        const { autohideMs = 4000 } = opts;
+        const d = document.createElement("div");
+        d.className = `alert alert-${type} shadow-sm bg-white border-start border-4 border-${type} fade show`;
+        d.innerHTML = `
+          <div class="d-flex align-items-center justify-content-between gap-2">
+            <span class="text-break">${escapeHtml(msg)}</span>
+            <button type="button" class="btn-close ms-2" data-bs-dismiss="alert"></button>
+          </div>
+        `;
+        document.getElementById("alertContainer").appendChild(d);
+        if (autohideMs > 0) setTimeout(() => d.remove(), autohideMs);
+      }
+
+      function escapeHtml(str) {
+        return String(str ?? "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function setButtonLoading(btnEl, isLoading, loadingText = "Saving...") {
+        if (!btnEl) return;
+        if (isLoading) {
+          btnEl.dataset.originalHtml = btnEl.innerHTML;
+          btnEl.disabled = true;
+          btnEl.innerHTML = `
+            <span class="spinner-border btn-spinner me-2" role="status" aria-hidden="true"></span>
+            ${escapeHtml(loadingText)}
+          `;
+        } else {
+          btnEl.disabled = false;
+          if (btnEl.dataset.originalHtml)
+            btnEl.innerHTML = btnEl.dataset.originalHtml;
+        }
+      }
+
+      async function safeJson(res) {
+        const text = await res.text();
+        try {
+          return text ? JSON.parse(text) : {};
+        } catch {
+          return { success: false, error: "Invalid JSON response" };
+        }
+      }
+
+      function fileToDataUrl(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = (e) => resolve(e.target.result);
+          reader.onerror = () => reject(new Error("Failed to read image file"));
+          reader.readAsDataURL(file);
+        });
+      }
+
+      // ============================================================
+      // List item adder (ingredients/procedure)
+      // ============================================================
+      function setupItemAdder(inputId, btnId, listId, emptyMsgId) {
+        const input = document.getElementById(inputId);
+        const btn = document.getElementById(btnId);
+
+        const performAdd = () => {
+          const value = input.value.trim();
+          if (value) {
+            addToList(listId, value, emptyMsgId);
+            input.value = "";
+            input.focus();
+          }
+        };
+
+        btn.addEventListener("click", performAdd);
+        input.addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            performAdd();
+          }
+        });
+      }
+
+      function addToList(listId, value, emptyMsgId) {
+        const list = document.getElementById(listId);
+        const emptyMsg = emptyMsgId
+          ? document.getElementById(emptyMsgId)
+          : null;
+        if (emptyMsg) emptyMsg.style.display = "none";
+
+        const itemDiv = document.createElement("div");
+        itemDiv.className = "added-item";
+
+        const textSpan = document.createElement("span");
+        textSpan.textContent = value;
+        textSpan.className = "me-2 text-break flex-grow-1";
+
+        const hiddenInput = document.createElement("input");
+        hiddenInput.type = "hidden";
+        hiddenInput.value = value;
+        hiddenInput.className = "list-item-value";
+
+        const removeBtn = document.createElement("button");
+        removeBtn.className = "btn btn-sm text-secondary p-0 flex-shrink-0";
+        removeBtn.innerHTML = '<i class="bi bi-x-circle-fill"></i>';
+        removeBtn.type = "button";
+        removeBtn.onclick = function () {
+          itemDiv.remove();
+          const remaining = list.querySelectorAll(".added-item").length;
+          if (remaining === 0 && emptyMsg) emptyMsg.style.display = "block";
+        };
+
+        itemDiv.appendChild(textSpan);
+        itemDiv.appendChild(hiddenInput);
+        itemDiv.appendChild(removeBtn);
+        list.appendChild(itemDiv);
+      }
+
+      function collectListItems(containerId) {
+        return Array.from(
+          document.querySelectorAll("#" + containerId + " .list-item-value"),
+        )
+          .map((input) => input.value.trim())
+          .filter(Boolean);
+      }
+
+      setupItemAdder(
+        "add_ing_input",
+        "btn_add_ing",
+        "add_ing_list",
+        "add_ing_empty",
+      );
+      setupItemAdder(
+        "add_proc_input",
+        "btn_add_proc",
+        "add_proc_list",
+        "add_proc_empty",
+      );
+      setupItemAdder(
+        "edit_ing_input",
+        "btn_edit_ing",
+        "edit_ing_list",
+        "edit_ing_empty",
+      );
+      setupItemAdder(
+        "edit_proc_input",
+        "btn_edit_proc",
+        "edit_proc_list",
+        "edit_proc_empty",
+      );
+
+      // ============================================================
+      // Image handling (upload-only) + preview + clear
+      // ============================================================
+      function setupImagePreview(fileInputId, previewId, containerId) {
+        document
+          .getElementById(fileInputId)
+          .addEventListener("change", async function (e) {
+            const file = e.target.files && e.target.files[0];
+            const previewContainer = document.getElementById(containerId);
+            const preview = document.getElementById(previewId);
+
+            if (!file) {
+              previewContainer.style.display = "none";
+              return;
+            }
+
+            if (!file.type.startsWith("image/")) {
+              e.target.value = "";
+              previewContainer.style.display = "none";
+              showAlert("Please select a valid image file.", "danger");
+              return;
+            }
+
+            const MAX_MB = 4;
+            if (file.size > MAX_MB * 1024 * 1024) {
+              e.target.value = "";
+              previewContainer.style.display = "none";
+              showAlert(`Image is too large. Max ${MAX_MB}MB.`, "danger");
+              return;
+            }
+
+            try {
+              const dataUrl = await fileToDataUrl(file);
+              preview.src = dataUrl;
+              previewContainer.style.display = "block";
+            } catch {
+              e.target.value = "";
+              previewContainer.style.display = "none";
+              showAlert("Failed to preview image file.", "danger");
+            }
+          });
+      }
+      setupImagePreview("image_file", "imagePreview", "imagePreviewContainer");
+      setupImagePreview(
+        "edit_image_file",
+        "editImagePreview",
+        "editImagePreviewContainer",
+      );
+
+      function clearImage() {
+        document.getElementById("image_file").value = "";
+        document.getElementById("imagePreview").src = "";
+        document.getElementById("imagePreviewContainer").style.display = "none";
+      }
+
+      function clearEditImage() {
+        document.getElementById("edit_image_file").value = "";
+        document.getElementById("editImagePreview").src = "";
+        document.getElementById("editImagePreviewContainer").style.display =
+          "none";
+      }
+
+      // ============================================================
+      // Offcanvas open/reset
+      // ============================================================
+      function openAddOffcanvas() {
+        const form = document.getElementById("recipeForm");
+        form.reset();
+
+        document.getElementById("add_ing_list").innerHTML =
+          '<div class="text-muted text-center py-4 small" id="add_ing_empty">No ingredients added yet.</div>';
+        document.getElementById("add_proc_list").innerHTML =
+          '<div class="text-muted text-center py-4 small" id="add_proc_empty">No steps added yet.</div>';
+
+        ensureCategoryInSelect("category", "Others");
+
+        clearImage();
+
+        bootstrap.Offcanvas.getOrCreateInstance(
+          document.getElementById("addOffcanvas"),
+        ).show();
+      }
+
+      // ============================================================
+      // Image value resolution (Add/Edit)
+      // - Add: required upload -> returns dataURL string
+      // - Edit: optional upload -> returns dataURL string OR undefined (no change)
+      // ============================================================
+      async function resolveAddImageValue() {
+        const file = document.getElementById("image_file").files[0];
+        if (!file) throw new Error("Please upload an image.");
+        return await fileToDataUrl(file);
+      }
+
+      async function resolveEditImageValue() {
+        const file = document.getElementById("edit_image_file").files[0];
+        if (file) return await fileToDataUrl(file);
+        return undefined; // keep existing
+      }
+
+      // ============================================================
+      // CRUD: Add
+      // ============================================================
+      document
+        .getElementById("recipeForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const btn = document.getElementById("btnSaveRecipe");
+          setButtonLoading(btn, true, "Saving...");
+
+          try {
+            const ingredients = collectListItems("add_ing_list");
+            const procedure = collectListItems("add_proc_list");
+
+            if (ingredients.length === 0)
+              return showAlert("Please add at least one ingredient.", "danger");
+            if (procedure.length === 0)
+              return showAlert(
+                "Please add at least one procedure step.",
+                "danger",
+              );
+
+            const categoryVal = document.getElementById("category").value;
+            if (!categoryVal)
+              return showAlert("Please select a category.", "danger");
+
+            let image_url;
+            try {
+              image_url = await resolveAddImageValue();
+            } catch (err) {
+              return showAlert(err.message || "Invalid image input.", "danger");
+            }
+
+            const payload = {
+              location: document.getElementById("location").value,
+              dish_name: document.getElementById("dish_name").value,
+              description: document.getElementById("description").value,
+              ingredients,
+              procedure,
+              category: categoryVal || "Others",
+              image_url, // always set on add
+            };
+
+            const res = await fetch("/api/recipes", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(payload),
+            });
+            const result = await safeJson(res);
+
+            if (res.ok && result.success) {
+              showAlert("Recipe created successfully!", "success");
+              bootstrap.Offcanvas.getInstance(
+                document.getElementById("addOffcanvas"),
+              ).hide();
+              await loadRecipes(true);
+            } else {
+              showAlert(result.error || "Failed to create recipe.", "danger");
+            }
+          } catch {
+            showAlert("Network error occurred while saving.", "danger");
+          } finally {
+            setButtonLoading(btn, false);
+          }
+        });
+
+      // ============================================================
+      // CRUD: Edit (load)
+      // ============================================================
+      async function editRecipe(recipeId) {
+        const offcanvasEl = document.getElementById("editOffcanvas");
+        const offcanvas = bootstrap.Offcanvas.getOrCreateInstance(offcanvasEl);
+
+        document.getElementById("editRecipeForm").reset();
+        document.getElementById("edit_recipe_id").value = recipeId;
+
+        document.getElementById("edit_ing_input").value = "";
+        document.getElementById("edit_proc_input").value = "";
+
+        document.getElementById("edit_ing_list").innerHTML =
+          '<div class="text-center py-3"><div class="spinner-border spinner-border-sm text-secondary"></div></div>';
+        document.getElementById("edit_proc_list").innerHTML =
+          '<div class="text-center py-3"><div class="spinner-border spinner-border-sm text-secondary"></div></div>';
+
+        document.getElementById("edit_image_file").value = "";
+        clearEditImage();
+
+        // clear hidden (we keep this for compatibility if your backend uses it)
+        document.getElementById("edit_existing_image_url").value = "";
+
+        offcanvas.show();
+
+        try {
+          const res = await fetch(
+            "/api/recipes/" + encodeURIComponent(recipeId),
+          );
+          const result = await safeJson(res);
+
+          if (!res.ok || !result.success) {
+            showAlert(result.error || "Failed to load recipe data.", "danger");
+            document.getElementById("edit_ing_list").innerHTML = "";
+            document.getElementById("edit_proc_list").innerHTML = "";
+            return;
+          }
+
+          const recipe = result.data || {};
+          document.getElementById("edit_location").value =
+            recipe.location || "";
+          document.getElementById("edit_dish_name").value =
+            recipe.dish_name || "";
+          document.getElementById("edit_description").value =
+            recipe.description || "";
+
+          ensureCategoryInSelect("edit_category", recipe.category || "Others");
+
+          const img = recipe.image_url || "";
+          document.getElementById("edit_existing_image_url").value = img;
+
+          // show current image as preview (not editable via url)
+          if (img) {
+            document.getElementById("editImagePreview").src = img;
+            document.getElementById("editImagePreviewContainer").style.display =
+              "block";
+          } else {
+            document.getElementById("editImagePreviewContainer").style.display =
+              "none";
+          }
+
+          const ingList = document.getElementById("edit_ing_list");
+          ingList.innerHTML = "";
+          const ings = Array.isArray(recipe.ingredients)
+            ? recipe.ingredients
+            : [];
+          document.getElementById("edit_ing_empty").style.display = ings.length
+            ? "none"
+            : "block";
+          ings.forEach((val) =>
+            addToList("edit_ing_list", String(val), "edit_ing_empty"),
+          );
+
+          const procList = document.getElementById("edit_proc_list");
+          procList.innerHTML = "";
+          const procs = Array.isArray(recipe.procedure) ? recipe.procedure : [];
+          document.getElementById("edit_proc_empty").style.display =
+            procs.length ? "none" : "block";
+          procs.forEach((val) =>
+            addToList("edit_proc_list", String(val), "edit_proc_empty"),
+          );
+        } catch {
+          document.getElementById("edit_ing_list").innerHTML = "";
+          document.getElementById("edit_proc_list").innerHTML = "";
+          showAlert("Error loading recipe data.", "danger");
+        }
+      }
+
+      // ============================================================
+      // CRUD: Edit (submit)
+      // ============================================================
+      document
+        .getElementById("editRecipeForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const btn = document.getElementById("btnUpdateRecipe");
+          setButtonLoading(btn, true, "Updating...");
+
+          try {
+            const ingredients = collectListItems("edit_ing_list");
+            const procedure = collectListItems("edit_proc_list");
+
+            if (ingredients.length === 0)
+              return showAlert("Please add at least one ingredient.", "danger");
+            if (procedure.length === 0)
+              return showAlert(
+                "Please add at least one procedure step.",
+                "danger",
+              );
+
+            const recipeId = document.getElementById("edit_recipe_id").value;
+
+            const categoryVal = document.getElementById("edit_category").value;
+            if (!categoryVal)
+              return showAlert("Please select a category.", "danger");
+
+            let imageResolved;
+            try {
+              imageResolved = await resolveEditImageValue();
+            } catch (err) {
+              return showAlert(err.message || "Invalid image input.", "danger");
+            }
+
+            const payload = {
+              location: document.getElementById("edit_location").value,
+              dish_name: document.getElementById("edit_dish_name").value,
+              description: document.getElementById("edit_description").value,
+              ingredients,
+              procedure,
+              category: categoryVal || "Others",
+            };
+
+            // only include if user selected a replacement image
+            if (imageResolved !== undefined) payload.image_url = imageResolved;
+
+            const res = await fetch(
+              "/api/recipes/" + encodeURIComponent(recipeId),
+              {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload),
+              },
+            );
+            const result = await safeJson(res);
+
+            if (res.ok && result.success) {
+              showAlert("Recipe updated successfully!", "success");
+              bootstrap.Offcanvas.getInstance(
+                document.getElementById("editOffcanvas"),
+              ).hide();
+              await loadRecipes(true);
+            } else {
+              showAlert(result.error || "Failed to update recipe.", "danger");
+            }
+          } catch {
+            showAlert("Network error occurred while updating.", "danger");
+          } finally {
+            setButtonLoading(btn, false);
+          }
+        });
+
+      // ============================================================
+      // CRUD: View
+      // ============================================================
+      async function viewRecipe(recipeId) {
+        const offcanvas = bootstrap.Offcanvas.getOrCreateInstance(
+          document.getElementById("viewOffcanvas"),
+        );
+        const body = document.getElementById("viewOffcanvasBody");
+        body.innerHTML =
+          '<div class="text-center py-5"><div class="spinner-border text-success"></div></div>';
+        offcanvas.show();
+
+        try {
+          const res = await fetch(
+            "/api/recipes/" + encodeURIComponent(recipeId),
+          );
+          const result = await safeJson(res);
+
+          if (!res.ok || !result.success) {
+            body.innerHTML =
+              '<div class="alert alert-danger">Failed to load details.</div>';
+            return;
+          }
+
+          const r = result.data || {};
+          const date = r.updated_at
+            ? new Date(r.updated_at).toLocaleDateString()
+            : "—";
+          const img =
+            r.image_url || "https://placehold.co/500x300?text=No+Image";
+          const loc = escapeHtml(r.location || "");
+          const cat = escapeHtml(r.category || "Others");
+          const title = escapeHtml(r.dish_name || "");
+          const desc = escapeHtml(r.description || "");
+
+          const ingredients = Array.isArray(r.ingredients) ? r.ingredients : [];
+          const procedure = Array.isArray(r.procedure) ? r.procedure : [];
+
+          body.innerHTML = `
+            <img src="${img}" class="view-image" onerror="this.src='https://placehold.co/500x300?text=No+Image'">
+            <div class="mb-2">
+              <span class="detail-badge">${loc}</span>
+              <span class="detail-badge">${cat}</span>
+            </div>
+            <h3 class="mb-3">${title}</h3>
+            <p class="text-muted mb-4" style="line-height: 1.6;">${desc}</p>
+
+            <h6 class="mb-3 text-uppercase small fw-bold text-muted">Ingredients</h6>
+            <div class="mb-4">
+              ${
+                ingredients.length
+                  ? ingredients
+                      .map(
+                        (i) =>
+                          `<div class="view-list-item"><i class="bi bi-dot me-2"></i>${escapeHtml(i)}</div>`,
+                      )
+                      .join("")
+                  : `<div class="text-muted small">No ingredients</div>`
+              }
+            </div>
+
+            <h6 class="mb-3 text-uppercase small fw-bold text-muted">Procedure</h6>
+            <div class="mb-4">
+              ${
+                procedure.length
+                  ? procedure
+                      .map(
+                        (step, idx) =>
+                          `<div class="d-flex mb-3"><span class="step-number">${idx + 1}</span><div class="flex-1" style="font-size:0.95rem; line-height:1.5;">${escapeHtml(step)}</div></div>`,
+                      )
+                      .join("")
+                  : `<div class="text-muted small">No steps</div>`
+              }
+            </div>
+
+            <div class="text-muted small mt-5 pt-3 border-top">
+              Last updated: ${escapeHtml(date)}
+            </div>
+          `;
+        } catch {
+          body.innerHTML =
+            '<div class="alert alert-danger">Error loading details</div>';
+        }
+      }
+
+      // ============================================================
+      // CRUD: Delete
+      // ============================================================
+      async function deleteRecipe(recipeId) {
+        if (!confirm("Delete this recipe?")) return;
+        try {
+          const res = await fetch(
+            "/api/recipes/" + encodeURIComponent(recipeId),
+            { method: "DELETE" },
+          );
+          const result = await safeJson(res);
+          if (res.ok && (result.success ?? true)) {
+            showAlert("Deleted successfully.", "success");
+            await loadRecipes(true);
+          } else {
+            showAlert(result.error || "Failed to delete.", "danger");
+          }
+        } catch {
+          showAlert("Network error deleting item.", "danger");
+        }
+      }
+
+      // ============================================================
+      // Table + Pagination rendering
+      // ============================================================
+      function renderRow(recipe, index) {
+        const img =
+          recipe.image_url || "https://placehold.co/100x75?text=No+Image";
+        const name = escapeHtml(recipe.dish_name || "");
+        const location = escapeHtml(recipe.location || "");
+        const category = escapeHtml(recipe.category || "Others");
+        const id = String(recipe.id ?? "");
+
+        return `
+          <tr>
+            <td class="ps-4 text-muted small">${index}</td>
+            <td><img src="${img}" class="table-img" onerror="this.src='https://placehold.co/100x75?text=No+Image'"></td>
+            <td><span class="fw-semibold">${name}</span></td>
+            <td class="text-muted">${location}</td>
+            <td><span class="badge bg-light text-dark border">${category}</span></td>
+            <td class="text-end pe-4">
+              <button class="btn-action btn-view" onclick="viewRecipe('${id}')"><i class="bi bi-eye"></i></button>
+              <button class="btn-action btn-edit" onclick="editRecipe('${id}')"><i class="bi bi-pencil"></i></button>
+              <button class="btn-action btn-delete" onclick="deleteRecipe('${id}')"><i class="bi bi-trash"></i></button>
+            </td>
+          </tr>
+        `;
+      }
+
+      function renderTable() {
+        const tbody = document.getElementById("recipesTableBody");
+        const items = slicePage(state.filtered);
+
+        if (state.filtered.length === 0) {
+          tbody.innerHTML =
+            '<tr><td colspan="6" class="text-center py-5 text-muted">No recipes found.</td></tr>';
+          return;
+        }
+
+        const startIndex = (state.page - 1) * state.pageSize;
+        tbody.innerHTML = items
+          .map((r, i) => renderRow(r, startIndex + i + 1))
+          .join("");
+      }
+
+      function renderPager() {
+        const pager = document.getElementById("pager");
+        const info = document.getElementById("pagerInfo");
+
+        const total = state.filtered.length;
+        const totalPages = Math.max(1, Math.ceil(total / state.pageSize));
+        const page = state.page;
+
+        const start = total === 0 ? 0 : (page - 1) * state.pageSize + 1;
+        const end = Math.min(page * state.pageSize, total);
+        info.textContent = total
+          ? `Showing ${start}-${end} of ${total} (Newest first)`
+          : "No results";
+
+        const mk = (label, p, disabled = false, active = false) => {
+          const li = document.createElement("li");
+          li.className = `page-item ${disabled ? "disabled" : ""} ${active ? "active" : ""}`;
+          const a = document.createElement("a");
+          a.className = "page-link";
+          a.href = "#";
+          a.innerHTML = label;
+          a.addEventListener("click", (e) => {
+            e.preventDefault();
+            if (disabled) return;
+            goToPage(p);
+          });
+          li.appendChild(a);
+          return li;
+        };
+
+        pager.innerHTML = "";
+        pager.appendChild(mk("&laquo;", 1, page === 1));
+        pager.appendChild(mk("&lsaquo;", page - 1, page === 1));
+
+        const windowSize = 2;
+        const from = Math.max(1, page - windowSize);
+        const to = Math.min(totalPages, page + windowSize);
+
+        if (from > 1) {
+          pager.appendChild(mk("1", 1, false, page === 1));
+          if (from > 2) {
+            const dots = document.createElement("li");
+            dots.className = "page-item disabled";
+            dots.innerHTML = '<span class="page-link">…</span>';
+            pager.appendChild(dots);
+          }
+        }
+
+        for (let p = from; p <= to; p++)
+          pager.appendChild(mk(String(p), p, false, p === page));
+
+        if (to < totalPages) {
+          if (to < totalPages - 1) {
+            const dots = document.createElement("li");
+            dots.className = "page-item disabled";
+            dots.innerHTML = '<span class="page-link">…</span>';
+            pager.appendChild(dots);
+          }
+          pager.appendChild(
+            mk(String(totalPages), totalPages, false, page === totalPages),
+          );
+        }
+
+        pager.appendChild(mk("&rsaquo;", page + 1, page === totalPages));
+        pager.appendChild(mk("&raquo;", totalPages, page === totalPages));
+      }
+
+      // ============================================================
+      // Load recipes
+      // ============================================================
+      async function loadRecipes() {
+        const tbody = document.getElementById("recipesTableBody");
+        const refreshBtn = document.getElementById("btnRefresh");
+        if (refreshBtn) refreshBtn.disabled = true;
+
+        tbody.innerHTML =
+          '<tr><td colspan="6" class="text-center py-5"><div class="spinner-border text-success" role="status"></div></td></tr>';
+
+        try {
+          const res = await fetch("/api/recipes?limit=1000");
+          const result = await safeJson(res);
+
+          const data =
+            result && result.success && Array.isArray(result.data)
+              ? result.data
+              : [];
+          if (!res.ok)
+            showAlert(result.error || "Failed to load recipes.", "danger");
+
+          state.all = data;
+          applySearchAndSort();
+        } catch {
+          state.all = [];
+          state.filtered = [];
+          renderTable();
+          renderPager();
+          showAlert("Network error while loading recipes.", "danger");
+        } finally {
+          if (refreshBtn) refreshBtn.disabled = false;
+        }
+      }
+
+      // ============================================================
+      // Search UI wiring
+      // ============================================================
+      function debounce(fn, ms) {
+        let t;
+        return (...args) => {
+          clearTimeout(t);
+          t = setTimeout(() => fn(...args), ms);
+        };
+      }
+      const onSearchDebounced = debounce((val) => setSearchQuery(val), 250);
+
+      document.addEventListener("DOMContentLoaded", () => {
+        populateCategorySelect("category", { includePlaceholder: true });
+        populateCategorySelect("edit_category", { includePlaceholder: true });
+
+        ensureCategoryInSelect("category", "Others");
+
+        const ps = document.getElementById("pageSize");
+        state.pageSize = Number(ps.value) || 20;
+        ps.addEventListener("change", () =>
+          setPageSize(Number(ps.value) || 20),
+        );
+
+        const s = document.getElementById("searchInput");
+        const clear = document.getElementById("btnClearSearch");
+        s.addEventListener("input", () => onSearchDebounced(s.value));
+        s.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") {
+            s.value = "";
+            setSearchQuery("");
+          }
+        });
+        clear.addEventListener("click", () => {
+          s.value = "";
+          setSearchQuery("");
+          s.focus();
+        });
+
+        loadRecipes();
+      });
+    </script>
+  </body>
+</html>

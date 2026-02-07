@@ -1,0 +1,463 @@
+{
+  "5c452c65-eb85-4132-91f8-fa3d67dde008": {
+    "created_at": "2025-01-15T08:00:00+08:00",
+    "description": "Grilled pork or chicken marinated in a special mixture of vinegar, garlic, and local spices, wrapped in banana leaves to infuse an earthy aroma.",
+    "dish_name": "Iniraran",
+    "image_url": "https://placehold.co/600x400?text=Iniraran",
+    "ingredients": [
+      "1 kg pork (belly or shoulder) or native chicken, cut into bite-sized pieces",
+      "1/2 cup vinegar (native cane or tuba vinegar)",
+      "1 head garlic, minced",
+      "1 thumb-sized ginger, crushed or minced",
+      "1 tablespoon salt",
+      "1 teaspoon black pepper",
+      "Banana leaves (for wrapping)"
+    ],
+    "location": "MAKATO",
+    "procedure": [
+      "In a large bowl, combine the meat with garlic, ginger, vinegar, salt, and pepper.",
+      "Cover and marinate for at least 1 hour or overnight in the refrigerator.",
+      "Wrap a few pieces of marinated meat tightly in clean banana leaves.",
+      "Grill over hot charcoal for 10–15 minutes per side until cooked through.",
+      "Remove from grill, unwrap, and serve hot with steamed rice."
+    ],
+    "updated_at": "2025-01-15T08:00:00+08:00"
+  },
+  "8e01cbcc-3f34-47f3-92fa-38403c7ad1d9": {
+    "created_at": "2025-01-15T08:05:00+08:00",
+    "description": "A traditional chicken soup distinguished by its coconut water broth, giving it a light, subtly sweet taste with aromatic notes of ginger and lemongrass.",
+    "dish_name": "Binakol",
+    "image_url": "https://placehold.co/600x400?text=Binakol",
+    "ingredients": [
+      "2 lbs chicken (native darag chicken ideal), cut into serving pieces",
+      "4-5 cups young coconut water",
+      "1 cup shredded young coconut meat",
+      "1 medium green papaya or chayote, cubed",
+      "1 bunch moringa leaves (or spinach/chili leaves)",
+      "2 stalks lemongrass, white parts only, crushed",
+      "1 medium onion, sliced",
+      "4 cloves garlic, minced",
+      "2 thumb-sized ginger, sliced",
+      "3-4 pieces long chili peppers (optional)",
+      "2 tbsp cooking oil",
+      "Fish sauce or salt to taste",
+      "7-10 black peppercorns"
+    ],
+    "location": "IBAJAY",
+    "procedure": [
+      "Sauté garlic, onion, and ginger in cooking oil.",
+      "Add chicken and cook until lightly browned.",
+      "Pour in the young coconut water and add lemongrass; bring to a boil and simmer until chicken is tender.",
+      "Add the papaya or chayote and coconut meat; cook until vegetables are soft.",
+      "Season with fish sauce, salt, and peppercorns.",
+      "Add moringa leaves and chili peppers; turn off heat and let the residual heat cook the leaves.",
+      "Serve hot."
+    ],
+    "updated_at": "2025-01-15T08:05:00+08:00"
+  },
+  "78e4a165-1ef0-4476-9f53-1e7daadad44e": {
+    "created_at": "2025-01-15T08:10:00+08:00",
+    "description": "A delicacy featuring native chicken and aromatics wrapped tightly in banana leaves and slow-cooked to create a flavorful, steaming broth.",
+    "dish_name": "Tinuom",
+    "image_url": "https://placehold.co/600x400?text=Tinuom",
+    "ingredients": [
+      "1/2 native chicken, deboned and cut into bite-size chunks",
+      "1 large onion",
+      "2-4 tomatoes",
+      "Lemongrass",
+      "Ginger",
+      "Salt",
+      "Vetsin or MSG (optional)",
+      "Water",
+      "Banana leaves (preferably saba) for wrapping",
+      "Bamboo string for tying"
+    ],
+    "location": "MADALAG",
+    "procedure": [
+      "Place chicken in a pot with onion, tomatoes, MSG (optional), and salt. Add enough water to cover.",
+      "Boil for 30 minutes to 1 hour depending on the age of the chicken.",
+      "Prepare the wrapper by lining a bowl with saba banana leaves.",
+      "Place the boiled chicken and broth into the leaf-lined bowl.",
+      "Gather the ends of the leaves and tie securely with a string to prevent dripping.",
+      "Steam the wrapped package for a few minutes to infuse flavors.",
+      "Remove from heat, unwrap, and serve."
+    ],
+    "updated_at": "2025-01-15T08:10:00+08:00"
+  },
+  "1abd40bb-0216-42cf-a865-2dbf4babd0c0": {
+    "created_at": "2025-01-15T08:15:00+08:00",
+    "description": "A sweet, crunchy puffed rice snack bound together by a muscovado sugar syrup known as 'lasaw'.",
+    "dish_name": "Ampao",
+    "image_url": "https://placehold.co/600x400?text=Ampao",
+    "ingredients": [
+      "2-3 cups Puffed Rice (sun-dried leftover rice)",
+      "1/2 to 3/4 cup Muscovado or brown sugar",
+      "1 1/2 to 2 tbsp Butter or Margarine",
+      "1-2 tbsp Calamansi juice or vinegar",
+      "Toasted sesame seeds"
+    ],
+    "location": "LEZO",
+    "procedure": [
+      "Dry cooked rice in the sun for 4 hours, then deep fry for a few seconds until it puffs. Drain well.",
+      "In a pan, melt sugar over low heat. Add butter and calamansi juice, stirring constantly into a thick syrup.",
+      "Quickly mix in the puffed rice and toasted sesame seeds until thoroughly coated.",
+      "Transfer to a greased pan; flatten and compress firmly while warm.",
+      "Let cool for 30 minutes until hardened, then cut into squares."
+    ],
+    "updated_at": "2025-01-15T08:15:00+08:00"
+  },
+  "f93fadd6-a8dc-4447-807e-bdde9fa2d3b1": {
+    "created_at": "2025-01-15T08:20:00+08:00",
+    "description": "A savory dish of ground freshwater shrimp and grated coconut wrapped in young taro leaves and simmered in coconut milk.",
+    "dish_name": "Linapay",
+    "image_url": "https://placehold.co/600x400?text=Linapay",
+    "ingredients": [
+      "1/2 kg Freshwater Shrimps (hipon), shelled and pounded",
+      "1 cup fresh grated coconut",
+      "1 tbsp ginger, minced",
+      "2 cloves garlic, minced",
+      "1 small onion, minced",
+      "Salt and pepper to taste",
+      "10-15 young Gabi (Taro) leaves",
+      "2 cups Coconut milk (kakang gata)",
+      "2-3 pieces Siling Labuyo (optional)"
+    ],
+    "location": "BATAN",
+    "procedure": [
+      "Mix shrimp paste, grated coconut, ginger, garlic, and onion in a bowl. Season with salt and pepper.",
+      "Place a spoonful of the mixture into the center of 1-2 gabi leaves and roll into a tight packet.",
+      "Arrange the packets closely in a pot.",
+      "Pour coconut milk over the packets and add chilies.",
+      "Simmer over medium-low heat for 20-30 minutes until the milk reduces to a thick sauce and leaves are tender.",
+      "Serve hot with rice."
+    ],
+    "updated_at": "2025-01-15T08:20:00+08:00"
+  },
+  "a3352a39-7a0e-45b2-9bd5-dc902539b73f": {
+    "created_at": "2025-01-15T08:25:00+08:00",
+    "description": "Fresh whole fish marinated in a simple mixture of vinegar and aromatics, then grilled over charcoal.",
+    "dish_name": "Inasal na Isda",
+    "image_url": "https://placehold.co/600x400?text=Inasal+na+Isda",
+    "ingredients": [
+      "Whole fish (local snapper or lapu-lapu)",
+      "Vinegar",
+      "Garlic, crushed",
+      "Salt and black pepper",
+      "Cooking oil",
+      "Lemon or calamansi"
+    ],
+    "location": "TANGALAN",
+    "procedure": [
+      "Mix vinegar, garlic, salt, and pepper to create the marinade.",
+      "Marinate the fish for 20–30 minutes.",
+      "Preheat the grill with charcoal.",
+      "Grill the fish until fully cooked on both sides.",
+      "Serve hot with rice and a dipping sauce of vinegar, garlic, and chili."
+    ],
+    "updated_at": "2025-01-15T08:25:00+08:00"
+  },
+  "b3029618-6ed5-4ec7-aae3-82566f04236f": {
+    "created_at": "2025-01-15T08:30:00+08:00",
+    "description": "A spicy chicken dish cooked in a rich, red chili-infused broth with coconut milk, a specialty of the Altavas community.",
+    "dish_name": "Piyanggang Manok",
+    "image_url": "https://placehold.co/600x400?text=Piyanggang+Manok",
+    "ingredients": [
+      "1 whole native chicken, cut into serving pieces",
+      "2 cups coconut milk",
+      "1 cup coconut cream (kakang gata)",
+      "1/2 cup red chili peppers (siling labuyo), pounded",
+      "1 head garlic, minced",
+      "1 medium onion, sliced",
+      "2 thumb-sized ginger, sliced",
+      "1/4 cup native vinegar",
+      "Salt to taste",
+      "2 tbsp cooking oil"
+    ],
+    "location": "ALTAVAS",
+    "procedure": [
+      "Sauté garlic, onion, and ginger in cooking oil until fragrant.",
+      "Add chicken pieces and brown on all sides.",
+      "Pour in coconut milk and bring to a boil, then simmer until chicken is tender.",
+      "Add the pounded chilies and coconut cream.",
+      "Stir in vinegar and season with salt.",
+      "Simmer for another 10 minutes until the sauce thickens.",
+      "Serve hot with steamed rice."
+    ],
+    "updated_at": "2025-01-15T08:30:00+08:00"
+  },
+  "45ce32cd-48ac-4116-b4bc-256a42078300": {
+    "created_at": "2025-01-15T08:35:00+08:00",
+    "description": "A traditional sweet soup made from kamang (shellfish), bayabas (guava), and lasaw (muscovado sugar syrup), a unique Balete specialty.",
+    "dish_name": "KBL - Kamang, Bayakas, Lasaw",
+    "image_url": "https://placehold.co/600x400?text=KBL",
+    "ingredients": [
+      "1 kg kamang (freshwater shellfish or mussels), cleaned",
+      "2 ripe guavas (bayabas), sliced",
+      "1/2 cup muscovado sugar (lasaw)",
+      "2 cups water",
+      "1 thumb-sized ginger, sliced",
+      "1/4 cup glutinous rice balls (optional)",
+      "Pinch of salt"
+    ],
+    "location": "BALE",
+    "procedure": [
+      "Boil water with ginger in a pot.",
+      "Add kamang and cook until shells open.",
+      "Add sliced guavas and cook for 5 minutes.",
+      "Stir in muscovado sugar until dissolved.",
+      "Add glutinous rice balls if using.",
+      "Simmer until soup thickens slightly.",
+      "Serve warm as a sweet snack or dessert."
+    ],
+    "updated_at": "2025-01-15T08:35:00+08:00"
+  },
+  "1cf1a39a-4de4-4d28-a4d1-674b5dd39cd0": {
+    "created_at": "2025-01-15T08:40:00+08:00",
+    "description": "Fish cooked in vinegar with ginger and spices, a Banga specialty that showcases the town's abundance of fresh seafood.",
+    "dish_name": "Paksiw na Isda",
+    "image_url": "https://placehold.co/600x400?text=Paksiw+na+Isda",
+    "ingredients": [
+      "1 kg fresh fish (talakitok or lapu-lapu), cut into thick slices",
+      "1 cup native vinegar",
+      "1/2 cup fish stock or water",
+      "3 thumb-sized ginger, sliced",
+      "1 medium onion, sliced",
+      "4 cloves garlic, minced",
+      "2-3 red chili peppers",
+      "1 tbsp salt",
+      "1 tsp black peppercorns",
+      "2 tbsp cooking oil"
+    ],
+    "location": "BANGA",
+    "procedure": [
+      "Heat oil in a pot and sauté garlic, onion, and ginger.",
+      "Add fish slices and brown lightly.",
+      "Pour in vinegar and bring to a boil without stirring.",
+      "Add fish stock, chilies, peppercorns, and salt.",
+      "Simmer for 15-20 minutes until fish is cooked and sauce reduces.",
+      "Serve with steamed rice."
+    ],
+    "updated_at": "2025-01-15T08:40:00+08:00"
+  },
+  "f320c114-706c-4370-9d31-9d88dcf2cd2d": {
+    "created_at": "2025-01-15T08:45:00+08:00",
+    "description": "Fresh fish wrapped in banana leaves with coconut milk, lemongrass, and aromatics, steamed to perfection - a coastal Buruanga specialty.",
+    "dish_name": "Tunuang Isda",
+    "image_url": "https://placehold.co/600x400?text=Tunuang+Isda",
+    "ingredients": [
+      "1 whole medium-sized fish (local catch)",
+      "1 cup coconut milk",
+      "1/2 cup coconut cream",
+      "2 stalks lemongrass, crushed",
+      "1 thumb-sized ginger, sliced",
+      "4 cloves garlic, minced",
+      "1 medium onion, sliced",
+      "1 tbsp fish sauce",
+      "Banana leaves for wrapping",
+      "Salt and pepper to taste"
+    ],
+    "location": "BURUANGA",
+    "procedure": [
+      "Clean the fish and make shallow cuts on both sides.",
+      "Season with salt, pepper, and garlic.",
+      "Place fish on banana leaves lined with lemongrass and ginger.",
+      "Pour coconut milk over the fish and wrap tightly.",
+      "Steam over medium heat for 30-40 minutes.",
+      "Open carefully and serve hot with rice."
+    ],
+    "updated_at": "2025-01-15T08:45:00+08:00"
+  },
+  "bd61aafa-07a9-40d3-888b-ce0f62906b08": {
+    "created_at": "2025-01-15T08:50:00+08:00",
+    "description": "The capital's signature dish - small fish (danggit or bulinaw) cooked in vinegar with ginger and garlic, a breakfast staple of Kalibo.",
+    "dish_name": "A kebalyoan",
+    "image_url": "https://placehold.co/600x400?text=Akalbyoan",
+    "ingredients": [
+      "1/2 kg small fish (danggit or bulinaw), cleaned",
+      "1/2 cup native vinegar",
+      "1 cup water",
+      "3 thumb-sized ginger, sliced",
+      "6 cloves garlic, minced",
+      "1 medium onion, sliced",
+      "1 tsp black peppercorns",
+      "1 tbsp salt",
+      "2 tbsp cooking oil",
+      "Red chili peppers (optional)"
+    ],
+    "location": "KALIBO",
+    "procedure": [
+      "Heat oil and sauté garlic until golden.",
+      "Add ginger and onion, sauté until fragrant.",
+      "Add fish and brown lightly on both sides.",
+      "Pour in vinegar and water, bring to a boil.",
+      "Add peppercorns, salt, and chilies.",
+      "Simmer for 15 minutes until fish is tender.",
+      "Serve hot with rice; pairs well with fried rice."
+    ],
+    "updated_at": "2025-01-15T08:50:00+08:00"
+  },
+  "3f07ba70-d2d1-4051-9001-a7b558a7e04f": {
+    "created_at": "2025-01-15T08:55:00+08:00",
+    "description": "Spiced ground meat mixed with grated coconut, wrapped in banana leaf and steamed - a Libacao specialty perfect for baon.",
+    "dish_name": "Pastil",
+    "image_url": "https://placehold.co/600x400?text=Pastil",
+    "ingredients": [
+      "1/2 kg ground pork or chicken",
+      "1 cup freshly grated coconut",
+      "1 medium onion, minced",
+      "4 cloves garlic, minced",
+      "2 thumb-sized ginger, minced",
+      "2 tbsp native vinegar",
+      "1 tbsp fish sauce (patis)",
+      "1 tsp turmeric powder",
+      "Salt and pepper to taste",
+      "Banana leaves for wrapping"
+    ],
+    "location": "LIBACAO",
+    "procedure": [
+      "Mix ground meat with onion, garlic, ginger, and spices.",
+      "Add grated coconut and mix thoroughly.",
+      "Season with vinegar, fish sauce, salt, and pepper.",
+      "Place portions onto banana leaf squares.",
+      "Roll and fold securely like a small packet.",
+      "Steam for 30-40 minutes until cooked through.",
+      "Serve hot or pack for travel."
+    ],
+    "updated_at": "2025-01-15T08:55:00+08:00"
+  },
+  "527a74a0-c64c-4005-a322-90fe7242b7a1": {
+    "created_at": "2025-01-15T09:00:00+08:00",
+    "description": "A sour soup made with fresh seafood from the waters near Boracay, using native kamias and tomatoes for that perfect tangy flavor.",
+    "dish_name": "Seafood Sinigang",
+    "image_url": "https://placehold.co/600x400?text=Seafood+Sinigang",
+    "ingredients": [
+      "1 kg mixed seafood (fish, shrimp, squid)",
+      "3 medium tomatoes, quartered",
+      "2 cups kaimito (kamias) or tamarind",
+      "1 medium onion, sliced",
+      "4 cloves garlic, minced",
+      "2 thumb-sized ginger, sliced",
+      "2 cups water spinach (kangkong)",
+      "1 cup taro leaves (gabi), sliced",
+      "2 green chili peppers",
+      "Fish sauce to taste",
+      "Salt to taste"
+    ],
+    "location": "MALAY",
+    "procedure": [
+      "Boil water with tomatoes, ginger, and onion.",
+      "Add kaimitos or tamarind and simmer for 10 minutes.",
+      "Add the seafood, starting with fish, then shrimp and squid.",
+      "Cook for 5-7 minutes until seafood is done.",
+      "Season with fish sauce and salt.",
+      "Add kangkong and gabi leaves, cook for 2 minutes.",
+      "Serve hot with steamed rice."
+    ],
+    "updated_at": "2025-01-15T09:00:00+08:00"
+  },
+  "dad79933-425f-4cb2-bcc6-09012ceb7d6b": {
+    "created_at": "2025-01-15T09:05:00+08:00",
+    "description": "Crispy fried pork internals (intestines) seasoned with salt and vinegar, a Malinao specialty that's perfect as a snack or appetizer.",
+    "dish_name": "Chicharon Bulaklak",
+    "image_url": "https://placehold.co/600x400?text=Chicharon+Bulaklak",
+    "ingredients": [
+      "1 kg pork intestines (bulaklak), cleaned thoroughly",
+      "1/2 cup native vinegar",
+      "1 head garlic, minced",
+      "2 tbsp salt",
+      "1 tsp black pepper",
+      "Cooking oil for deep frying",
+      "Calamansi for dipping"
+    ],
+    "location": "MALINAO",
+    "procedure": [
+      "Clean pork intestines multiple times with vinegar and salt.",
+      "Boil in salted water until tender, about 30-40 minutes.",
+      "Cut into bite-sized pieces and season with garlic, pepper, and salt.",
+      "Deep fry in hot oil until golden and crispy.",
+      "Drain on paper towels.",
+      "Serve hot with calamansi dipping sauce."
+    ],
+    "updated_at": "2025-01-15T09:05:00+08:00"
+  },
+  "0efe5991-6c48-442e-b192-9403cde1c349": {
+    "created_at": "2025-01-15T09:10:00+08:00",
+    "description": "A hearty noodle soup with rich pork broth, egg noodles, and toppings of chicharon, garlic chips, and green onions - a Nabas comfort food.",
+    "dish_name": "La Paz Batchoy",
+    "image_url": "https://placehold.co/600x400?text=La+Paz+Batchoy",
+    "ingredients": [
+      "1 kg pork bones and belly",
+      "500g egg noodles",
+      "1/2 cup chicharon (crushed)",
+      "6 cloves garlic, minced and fried",
+      "1 medium onion, chopped",
+      "2 tbsp fish sauce",
+      "1 tsp black pepper",
+      "Green onions, chopped",
+      "Hard-boiled eggs",
+      "Chicken liver (optional)"
+    ],
+    "location": "NABAS",
+    "procedure": [
+      "Boil pork bones and belly in water for 2-3 hours until broth is rich.",
+      "Season with fish sauce, pepper, and salt.",
+      "Cook egg noodles in boiling water until tender.",
+      "Place noodles in bowls and ladle hot broth over them.",
+      "Top with sliced pork belly, chicharon, garlic chips, and green onions.",
+      "Add halved hard-boiled eggs.",
+      "Serve piping hot."
+    ],
+    "updated_at": "2025-01-15T09:10:00+08:00"
+  },
+  "ba080844-07b3-4e23-8f00-1f193a1ad261": {
+    "created_at": "2025-01-15T09:15:00+08:00",
+    "description": "Traditional rice cake made with glutinous rice, coconut milk, and sugar, baked in clay pots with banana leaves - a New Washington specialty.",
+    "dish_name": "Bibingka",
+    "image_url": "https://placehold.co/600x400?text=Bibingka",
+    "ingredients": [
+      "2 cups glutinous rice flour",
+      "1 cup coconut milk",
+      "1 cup coconut cream",
+      "1 cup sugar",
+      "3 eggs",
+      "1/2 tsp baking powder",
+      "Butter or margarine",
+      "Grated coconut (kinudkud)",
+      "Salt",
+      "Banana leaves"
+    ],
+    "location": "NEW WASHINGTON",
+    "procedure": [
+      "Mix rice flour, coconut milk, sugar, eggs, and baking powder until smooth.",
+      "Line clay pots or baking pan with banana leaves.",
+      "Pour batter and top with salted grated coconut.",
+      "Bake in hot oven or over coals for 30-40 minutes until golden.",
+      "Brush with butter while warm.",
+      "Serve sliced, either warm or at room temperature."
+    ],
+    "updated_at": "2025-01-15T09:15:00+08:00"
+  },
+  "acbe190f-2005-4687-9aa3-17f4bbe08f72": {
+    "created_at": "2025-01-15T09:20:00+08:00",
+    "description": "Sweetened coconut strips dried under the sun, a Numancia treat that captures the sweetness of local coconuts.",
+    "dish_name": "Pandong",
+    "image_url": "https://placehold.co/600x400?text=Pandong",
+    "ingredients": [
+      "4 young coconuts",
+      "1 cup muscovado sugar",
+      "1/2 cup water",
+      "Pinch of salt",
+      "Vanilla extract (optional)"
+    ],
+    "location": "NUMANCIA",
+    "procedure": [
+      "Extract coconut meat and cut into thin strips.",
+      "Boil water with muscovado sugar until syrup forms.",
+      "Add coconut strips and simmer until translucent and coated.",
+      "Spread on clean trays or banana leaves.",
+      "Dry under direct sunlight for 2-3 days until chewy.",
+      "Store in airtight containers."
+    ],
+    "updated_at": "2025-01-15T09:20:00+08:00"
+  }
+}
