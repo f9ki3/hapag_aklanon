@@ -1,0 +1,905 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Documentation - Hapag-Aklanon Recipe Manager</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --primary-color: #10b981;
+        --primary-hover: #059669;
+        --bg-body: #f8fafc;
+        --surface: #ffffff;
+        --text-main: #1e293b;
+        --text-muted: #64748b;
+        --border-color: #e2e8f0;
+        --shadow-sm:
+          0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+        --shadow-md:
+          0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        --radius-lg: 16px;
+        --radius-md: 8px;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--bg-body);
+        color: var(--text-main);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 32px auto;
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .card {
+        border: none;
+        border-radius: var(--radius-lg);
+        background: var(--surface);
+        box-shadow: var(--shadow-sm);
+        overflow: hidden;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        font-weight: 600;
+        color: var(--text-main);
+        letter-spacing: -0.025em;
+      }
+
+      h1 {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+      }
+
+      h2 {
+        font-size: 1.35rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        color: var(--text-main);
+      }
+
+      h3 {
+        font-size: 1.15rem;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .text-muted {
+        color: var(--text-muted) !important;
+      }
+
+      .badge {
+        font-weight: 500;
+        padding: 0.35em 0.65em;
+        font-size: 0.75em;
+      }
+
+      .badge-method {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .badge-get {
+        background-color: #10b981;
+        color: white;
+      }
+
+      .badge-post {
+        background-color: #3b82f6;
+        color: white;
+      }
+
+      .badge-put {
+        background-color: #f59e0b;
+        color: white;
+      }
+
+      .badge-delete {
+        background-color: #ef4444;
+        color: white;
+      }
+
+      .endpoint-card {
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        background: var(--surface);
+        margin-bottom: 1.5rem;
+        overflow: hidden;
+      }
+
+      .endpoint-header {
+        background-color: #f8fafc;
+        padding: 16px 20px;
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .endpoint-method {
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        padding: 4px 10px;
+        border-radius: 4px;
+        color: white;
+        min-width: 60px;
+        text-align: center;
+      }
+
+      .endpoint-path {
+        font-family: "SF Mono", "Monaco", "Inconsolata", "Fira Code",
+          monospace;
+        font-size: 0.9rem;
+        color: var(--text-main);
+        word-break: break-all;
+      }
+
+      .endpoint-body {
+        padding: 20px;
+      }
+
+      .param-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 0.875rem;
+      }
+
+      .param-table th,
+      .param-table td {
+        text-align: left;
+        padding: 10px 12px;
+        border: 1px solid var(--border-color);
+      }
+
+      .param-table th {
+        background-color: #f8fafc;
+        font-weight: 600;
+        color: var(--text-muted);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .param-table code {
+        background-color: #f1f5f9;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        color: var(--text-main);
+      }
+
+      .param-required {
+        color: #ef4444;
+        font-size: 0.7rem;
+        margin-left: 4px;
+      }
+
+      .param-optional {
+        color: var(--text-muted);
+        font-size: 0.7rem;
+        margin-left: 4px;
+      }
+
+      pre {
+        background-color: #1e293b;
+        color: #e2e8f0;
+        padding: 16px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        margin: 12px 0;
+      }
+
+      code {
+        font-family: "SF Mono", "Monaco", "Inconsolata", "Fira Code",
+          monospace;
+        font-size: 0.85rem;
+      }
+
+      .inline-code {
+        background-color: #f1f5f9;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        color: #475569;
+      }
+
+      .response-block {
+        margin-top: 16px;
+      }
+
+      .response-label {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 8px;
+      }
+
+      .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 0.9rem;
+        padding: 8px 0;
+        margin-bottom: 16px;
+        transition: color 0.2s ease;
+      }
+
+      .back-btn:hover {
+        color: var(--primary-color);
+      }
+
+      .section-nav {
+        position: sticky;
+        top: 20px;
+        background: var(--surface);
+        border-radius: var(--radius-md);
+        padding: 16px;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--border-color);
+      }
+
+      .section-nav a {
+        display: block;
+        padding: 8px 12px;
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 0.875rem;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+      }
+
+      .section-nav a:hover {
+        background-color: #f8fafc;
+        color: var(--text-main);
+      }
+
+      .section-nav a.active {
+        background-color: #ecfdf5;
+        color: var(--primary-color);
+      }
+
+      .nav-title {
+        font-weight: 600;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--text-muted);
+        margin-bottom: 12px;
+        padding: 0 12px;
+      }
+
+      .structure-block {
+        background-color: #f8fafc;
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        padding: 16px;
+        margin: 12px 0;
+      }
+
+      .structure-key {
+        color: #7c3aed;
+        font-weight: 500;
+      }
+
+      .structure-type {
+        color: #2563eb;
+        font-size: 0.8rem;
+      }
+
+      .structure-desc {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+      }
+
+      .info-box {
+        background-color: #ecfdf5;
+        border: 1px solid #d1fae5;
+        border-radius: var(--radius-md);
+        padding: 16px;
+        margin: 16px 0;
+      }
+
+      .info-box-title {
+        font-weight: 600;
+        color: var(--primary-color);
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .info-box-content {
+        font-size: 0.9rem;
+        color: var(--text-main);
+      }
+
+      .error-box {
+        background-color: #fef2f2;
+        border: 1px solid #fee2e2;
+        border-radius: var(--radius-md);
+        padding: 16px;
+        margin: 16px 0;
+      }
+
+      .error-box-title {
+        font-weight: 600;
+        color: #ef4444;
+        margin-bottom: 8px;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          margin: 20px auto;
+        }
+
+        .endpoint-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
+        }
+
+        .section-nav {
+          position: static;
+          margin-bottom: 20px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <a href="/" class="back-btn">
+        <i class="bi bi-arrow-left"></i>
+        <span>Back to Recipe Manager</span>
+      </a>
+
+      <div class="card">
+        <div class="p-4 p-md-5">
+          <h1>
+            <i class="bi bi-book me-2"></i>Hapag-Aklanon Recipe API Documentation
+          </h1>
+          <p class="text-muted mb-4">
+            REST API for managing recipe data stored in Firebase Realtime
+            Database. Supports Cloudinary for image uploads.
+          </p>
+
+          <!-- Base URL Info -->
+          <div class="info-box">
+            <div class="info-box-title">
+              <i class="bi bi-info-circle-fill"></i>
+              Base URL
+            </div>
+            <div class="info-box-content">
+              <code class="inline-code">https://hapag-aklanon.onrender.com</code>
+            </div>
+          </div>
+
+          <!-- Endpoints Navigation -->
+          <div class="row mt-4">
+            <div class="col-lg-12">
+              <nav class="section-nav" id="sectionNav">
+                <div class="nav-title">Contents</div>
+                <a href="#get-all-recipes">Get All Recipes</a>
+                <a href="#get-single-recipe">Get Single Recipe</a>
+                <a href="#create-recipe">Create Recipe</a>
+                <a href="#delete-recipe">Delete Recipe</a>
+                <a href="#search-recipes">Search Recipes</a>
+                <a href="#update-recipe">Update Recipe</a>
+                <a href="#bulk-insert">Bulk Insert</a>
+                <a href="#recipe-structure">Recipe Structure</a>
+              </nav>
+            </div>
+
+            <div class="col-lg-12 mt-4">
+              <!-- Endpoint 1: Get All Recipes -->
+              <div class="endpoint-card" id="get-all-recipes">
+                <div class="endpoint-header">
+                  <span class="endpoint-method badge-get">GET</span>
+                  <span class="endpoint-path">/api/recipes</span>
+                </div>
+                <div class="endpoint-body">
+                  <p class="text-muted mb-3">
+                    Retrieve all recipes with pagination support.
+                  </p>
+
+                  <h3>Query Parameters</h3>
+                  <table class="param-table">
+                    <thead>
+                      <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Default</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><code>page</code></td>
+                        <td>integer</td>
+                        <td>1</td>
+                        <td>Page number for pagination</td>
+                      </tr>
+                      <tr>
+                        <td><code>limit</code></td>
+                        <td>integer</td>
+                        <td>10</td>
+                        <td>
+                          Items per page
+                          <span class="param-optional">(max: 100)</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div class="response-block">
+                    <div class="response-label">Example Request</div>
+                    <pre><code>curl "https://hapag-aklanon.onrender.com/api/recipes?page=1&limit=5"</code></pre>
+                  </div>
+
+                  <div class="response-block">
+                    <div class="response-label">Example Response</div>
+                    <pre><code>{
+  "success": true,
+  "data": [
+    {
+      "id": "-Nk123...",
+      "location": "MAKATO",
+      "dish_name": "Iniraran",
+      "description": "Grilled pork or chicken...",
+      "ingredients": ["1 kg pork...", "1/2 cup vinegar..."],
+      "procedure": ["In a large bowl...", "Cover and marinate..."]
+    }
+  ],
+  "pagination": {
+    "page": 1,
+    "limit": 5,
+    "total_items": 6,
+    "total_pages": 2,
+    "has_next": true,
+    "has_prev": false
+  }
+}</code></pre>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Endpoint 2: Get Single Recipe -->
+              <div class="endpoint-card" id="get-single-recipe">
+                <div class="endpoint-header">
+                  <span class="endpoint-method badge-get">GET</span>
+                  <span class="endpoint-path">/api/recipes/<recipe_id></span>
+                </div>
+                <div class="endpoint-body">
+                  <p class="text-muted mb-3">
+                    Retrieve a single recipe by its unique identifier.
+                  </p>
+
+                  <h3>URL Parameters</h3>
+                  <table class="param-table">
+                    <thead>
+                      <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><code>recipe_id</code></td>
+                        <td>string</td>
+                        <td>
+                          The unique identifier of the recipe
+                          <span class="param-required">*required</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div class="response-block">
+                    <div class="response-label">Example Request</div>
+                    <pre><code>curl "https://hapag-aklanon.onrender.com/api/recipes/-Nk123abc..."</code></pre>
+                  </div>
+
+                  <div class="response-block">
+                    <div class="response-label">Example Response</div>
+                    <pre><code>{
+  "success": true,
+  "data": {
+    "id": "-Nk123abc...",
+    "location": "MAKATO",
+    "dish_name": "Iniraran",
+    "description": "Grilled pork or chicken...",
+    "ingredients": ["1 kg pork...", "1/2 cup vinegar..."],
+    "procedure": ["In a large bowl...", "Cover and marinate..."]
+  }
+}</code></pre>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Endpoint 3: Create Recipe -->
+              <div class="endpoint-card" id="create-recipe">
+                <div class="endpoint-header">
+                  <span class="endpoint-method badge-post">POST</span>
+                  <span class="endpoint-path">/api/recipes</span>
+                </div>
+                <div class="endpoint-body">
+                  <p class="text-muted mb-3">
+                    Create a new recipe. Requires image upload or valid image
+                    URL.
+                  </p>
+
+                  <h3>Request Body (JSON)</h3>
+                  <pre><code>{
+  "location": "NEW_LOCATION",
+  "dish_name": "New Dish Name",
+  "description": "Description of the dish",
+  "ingredients": ["ingredient 1", "ingredient 2", "ingredient 3"],
+  "procedure": ["Step 1", "Step 2", "Step 3"],
+  "image_url": "https://example.com/image.jpg",
+  "cooking_time": 60,
+  "servings": 4,
+  "category": "Main Course"
+}</code></pre>
+
+                  <div class="response-block">
+                    <div class="response-label">Example Request</div>
+                    <pre><code>curl -X POST "https://hapag-aklanon.onrender.com/api/recipes" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "location": "KALIBO",
+    "dish_name": "Kinilaw",
+    "description": "Fresh fish ceviche",
+    "ingredients": ["1 kg fresh tuna", "1 cup vinegar", "Ginger", "Onion"],
+    "procedure": ["Clean the fish", "Slice into cubes", "Mix with vinegar"]
+  }'</code></pre>
+                  </div>
+
+                  <div class="response-block">
+                    <div class="response-label">Example Response</div>
+                    <pre><code>{
+  "success": true,
+  "message": "Recipe created successfully",
+  "data": {
+    "id": "-Nk456def...",
+    "location": "KALIBO",
+    "dish_name": "Kinilaw",
+    "description": "Fresh fish ceviche",
+    "ingredients": ["1 kg fresh tuna", "1 cup vinegar", "Ginger", "Onion"],
+    "procedure": ["Clean the fish", "Slice into cubes", "Mix with vinegar"]
+  }
+}</code></pre>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Endpoint 4: Delete Recipe -->
+              <div class="endpoint-card" id="delete-recipe">
+                <div class="endpoint-header">
+                  <span class="endpoint-method badge-delete">DELETE</span>
+                  <span class="endpoint-path">/api/recipes/<recipe_id></span>
+                </div>
+                <div class="endpoint-body">
+                  <p class="text-muted mb-3">
+                    Delete a recipe by its unique identifier.
+                  </p>
+
+                  <h3>URL Parameters</h3>
+                  <table class="param-table">
+                    <thead>
+                      <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><code>recipe_id</code></td>
+                        <td>string</td>
+                        <td>
+                          The unique identifier of the recipe
+                          <span class="param-required">*required</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div class="response-block">
+                    <div class="response-label">Example Request</div>
+                    <pre><code>curl -X DELETE "https://hapag-aklanon.onrender.com/api/recipes/-Nk123abc..."</code></pre>
+                  </div>
+
+                  <div class="response-block">
+                    <div class="response-label">Example Response</div>
+                    <pre><code>{
+  "success": true,
+  "message": "Recipe deleted successfully",
+  "deleted_id": "-Nk123abc..."
+}</code></pre>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Endpoint 5: Search Recipes -->
+              <div class="endpoint-card" id="search-recipes">
+                <div class="endpoint-header">
+                  <span class="endpoint-method badge-get">GET</span>
+                  <span class="endpoint-path">/api/recipes/search</span>
+                </div>
+                <div class="endpoint-body">
+                  <p class="text-muted mb-3">
+                    Search recipes by location or dish name.
+                  </p>
+
+                  <h3>Query Parameters</h3>
+                  <table class="param-table">
+                    <thead>
+                      <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Required</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><code>q</code></td>
+                        <td>string</td>
+                        <td>Yes</td>
+                        <td>Search query string</td>
+                      </tr>
+                      <tr>
+                        <td><code>field</code></td>
+                        <td>string</td>
+                        <td>No</td>
+                        <td>
+                          Search field:
+                          <code>location</code>, <code>dish_name</code>, or
+                          <code>both</code> (default)
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><code>page</code></td>
+                        <td>integer</td>
+                        <td>No</td>
+                        <td>Page number (default: 1)</td>
+                      </tr>
+                      <tr>
+                        <td><code>limit</code></td>
+                        <td>integer</td>
+                        <td>No</td>
+                        <td>Items per page (default: 10)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div class="response-block">
+                    <div class="response-label">Example Requests</div>
+                    <pre><code># Search by location
+curl "https://hapag-aklanon.onrender.com/api/recipes/search?q=MAKATO&field=location"
+
+# Search by dish name
+curl "https://hapag-aklanon.onrender.com/api/recipes/search?q=Iniraran&field=dish_name"
+
+# Search both fields
+curl "https://hapag-aklanon.onrender.com/api/recipes/search?q=chicken"</code></pre>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Endpoint 6: Update Recipe -->
+              <div class="endpoint-card" id="update-recipe">
+                <div class="endpoint-header">
+                  <span class="endpoint-method badge-put">PUT</span>
+                  <span class="endpoint-path">/api/recipes/<recipe_id></span>
+                </div>
+                <div class="endpoint-body">
+                  <p class="text-muted mb-3">
+                    Update an existing recipe. Supports partial updates.
+                  </p>
+
+                  <h3>URL Parameters</h3>
+                  <table class="param-table">
+                    <thead>
+                      <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><code>recipe_id</code></td>
+                        <td>string</td>
+                        <td>
+                          The unique identifier of the recipe
+                          <span class="param-required">*required</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <h3 class="mt-3">Request Body (JSON) - Partial updates allowed</h3>
+                  <pre><code>{
+  "dish_name": "Updated Dish Name",
+  "description": "Updated description"
+}</code></pre>
+
+                  <div class="response-block">
+                    <div class="response-label">Example Request</div>
+                    <pre><code>curl -X PUT "https://hapag-aklanon.onrender.com/api/recipes/-Nk123abc..." \
+  -H "Content-Type: application/json" \
+  -d '{"dish_name": "Updated Iniraran"}'</code></pre>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Endpoint 7: Bulk Insert -->
+              <div class="endpoint-card" id="bulk-insert">
+                <div class="endpoint-header">
+                  <span class="endpoint-method badge-post">POST</span>
+                  <span class="endpoint-path">/api/recipes/bulk</span>
+                </div>
+                <div class="endpoint-body">
+                  <p class="text-muted mb-3">
+                    Insert multiple recipes at once in a single request.
+                  </p>
+
+                  <h3>Request Body (JSON)</h3>
+                  <pre><code>{
+  "recipes": [
+    {
+      "location": "LOCATION_1",
+      "dish_name": "Dish 1",
+      "description": "Description 1",
+      "ingredients": ["ing1", "ing2"],
+      "procedure": ["step1", "step2"]
+    },
+    {
+      "location": "LOCATION_2",
+      "dish_name": "Dish 2",
+      "description": "Description 2",
+      "ingredients": ["ing3", "ing4"],
+      "procedure": ["step3", "step4"]
+    }
+  ]
+}</code></pre>
+                </div>
+              </div>
+
+              <!-- Error Responses -->
+              <h2>Error Responses</h2>
+
+              <div class="error-box">
+                <div class="error-box-title">400 Bad Request</div>
+                <pre><code>{
+  "success": false,
+  "error": "Error message describing the issue"
+}</code></pre>
+              </div>
+
+              <div class="error-box">
+                <div class="error-box-title">404 Not Found</div>
+                <pre><code>{
+  "success": false,
+  "error": "Recipe not found"
+}</code></pre>
+              </div>
+
+              <div class="error-box">
+                <div class="error-box-title">500 Internal Server Error</div>
+                <pre><code>{
+  "success": false,
+  "error": "Internal server error message"
+}</code></pre>
+              </div>
+
+              <!-- Recipe Structure -->
+              <h2 id="recipe-structure">Recipe Structure</h2>
+              <p class="text-muted mb-3">
+                The complete structure of a recipe object in the database.
+              </p>
+
+              <div class="structure-block">
+                <pre><code>{
+  "id": "string (auto-generated)",
+  "location": "string (required)",
+  "dish_name": "string (required)",
+  "description": "string (required)",
+  "ingredients": ["string", ...] (required),
+  "procedure": ["string", ...] (required),
+  "image_url": "string (optional)",
+  "cooking_time": integer (optional, in minutes)",
+  "servings": integer (optional)",
+  "category": "string (optional)"
+}</code></pre>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center text-muted py-4 small">
+        Hapag-Aklanon Recipe Manager API Documentation
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // Smooth scroll for navigation
+      document.querySelectorAll('.section-nav a').forEach((link) => {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+
+      // Active state on scroll
+      const sections = document.querySelectorAll('.endpoint-card[id]');
+      const navLinks = document.querySelectorAll('.section-nav a');
+
+      function updateActiveLink() {
+        let currentSection = '';
+
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (window.scrollY >= sectionTop - 150) {
+            currentSection = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${currentSection}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+
+      window.addEventListener('scroll', updateActiveLink);
+      updateActiveLink();
+    </script>
+  </body>
+</html>
+

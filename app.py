@@ -90,8 +90,14 @@ def firebase_request(method, path='', data=None, params=None):
 
 @app.route('/')
 def index():
-    """API documentation"""
+    """Recipe Manager - Main Page"""
     return render_template('index.html')
+
+
+@app.route('/docs')
+def documentation():
+    """API Documentation Page"""
+    return render_template('documentation.html')
 
 
 @app.route('/api/recipes', methods=['GET'])
@@ -455,5 +461,5 @@ def internal_error(error):
 
 if __name__ == '__main__':
     
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', debug=True)
 
